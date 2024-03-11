@@ -1,0 +1,42 @@
+using System.Globalization;
+
+public class Program2
+{
+   
+    //https://www.hackerrank.com/challenges/time-conversion/ задача 2 - конвертер времени 
+    /*
+      * Complete the 'timeConversion' function below.
+      *
+      * The function is expected to return a STRING.
+      * The function accepts STRING s as parameter.
+      */
+    static string timeConversion(string s)
+    {
+        // Проверяем, что строка времени не пустая
+        if (string.IsNullOrEmpty(s))
+        {
+            return "Неверный формат времени";
+        }
+
+        // Парсим строку времени в 12-часовом формате
+        DateTime parsedTime;
+        if (!DateTime.TryParseExact(s, "hh:mm:sstt", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedTime))
+        {
+            return "Неверный формат времени";
+        }
+
+        // Возвращаем строку в 24-часовом формате
+        return parsedTime.ToString("HH:mm:ss");
+    }
+
+    class Solution
+    {
+        public static void Main(string[] args)
+        {
+            string s = Console.ReadLine();
+            string result = timeConversion(s);
+
+            Console.WriteLine(result);
+            
+        }
+    }
